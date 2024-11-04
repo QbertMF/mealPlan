@@ -64,24 +64,36 @@ const DATA = [
 export default function TabOneScreen() {
 
   const [selectedId, setSelectedId] = useState<string>();
+  const [meals, setMeals] = useState([]);
 
   const Item = ({item}) => {
+    let imgSource;
+    (item.strMealThumb == null) ? 
+      imgSource=PlaceholderImage : imgSource=item.strMealThumb;
+
     return( 
       <TouchableOpacity style={styles.listItem} onPress={() => setSelectedId(item.id)}>
-        <Image
-          style={styles.imagePreview}
-          source={PlaceholderImage}
+        <Image style={styles.imagePreview}
+          source={imgSource}
         />
-        <Text>{item.title}</Text>
+        <Text>{item.strMeal}</Text>
       </TouchableOpacity >
     );
   }
 
-  const getAPIdata = async () => {
+
+  const getAPIdata = () => {
+    //const url = "https://fakestoreapi.com/products"; 
     const url = "https://www.themealdb.com/api/json/v1/1/random.php";
-    let result = await fetch(url);
-    result = await result.json();
-    console.warn(result);
+    //const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata";
+    fetch(url)
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      setMeals(data);
+      //console.warn(data);
+    });
   }
 
   useEffect(()=>{
@@ -91,13 +103,14 @@ export default function TabOneScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab One</Text>
+      {/*  ToDo: Remove
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <EditScreenInfo path="app/(tabs)/index.tsx" />
-
+      */}
       <FlatList
-       data={DATA}
+       data={meals.meals}
        renderItem={({item}) => <Item item={item} />}
-       keyExtractor={item => item.id}
+       keyExtractor={item => item.idMeal}
       />
     </View>
   );
@@ -134,7 +147,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imagePreview: {
-    width: 50,
-    height: 50,
+    width: 100,
+    height: 100,
   },
 });
