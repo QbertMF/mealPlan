@@ -81,19 +81,33 @@ export default function TabOneScreen() {
     );
   }
 
+  //https://spoonacular.com/food-api/
+  //API Key:09254edec163409db736fb4fa15b6b1f
+  //https://api.spoonacular.com/recipes/complexSearch?apiKey=09254edec163409db736fb4fa15b6b1f&query=pasta&maxFat=25&number=2
 
   const getAPIdata = () => {
     //const url = "https://fakestoreapi.com/products"; 
     const url = "https://www.themealdb.com/api/json/v1/1/random.php";
     //const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata";
-    fetch(url)
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      setMeals(data);
-      //console.warn(data);
-    });
+    
+    let mealList = [];
+
+    for (let i = 0; i < 10; i++) {
+      fetch(url)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        mealList.push(data.meals[0]);
+        //console.warn(data.meals[0]);
+        if (i == 9){
+          setMeals(mealList);
+          //console.warn(mealList);
+        }
+        //console.warn(data); 
+
+      });
+    }
   }
 
   useEffect(()=>{
@@ -108,7 +122,7 @@ export default function TabOneScreen() {
       <EditScreenInfo path="app/(tabs)/index.tsx" />
       */}
       <FlatList
-       data={meals.meals}
+       data={meals}
        renderItem={({item}) => <Item item={item} />}
        keyExtractor={item => item.idMeal}
       />
