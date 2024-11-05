@@ -94,8 +94,8 @@ export default function TabOneScreen() {
     ////const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata";
     //  const url = "https://www.themealdb.com/api/json/v1/1/random.php";
 
-    const url = "https://api.spoonacular.com/recipes/complexSearch?apiKey=09254edec163409db736fb4fa15b6b1f&maxFat=25&number=10"
-
+    //const url = "https://api.spoonacular.com/recipes/complexSearch?apiKey=09254edec163409db736fb4fa15b6b1f&maxFat=25&number=10"
+    const url = "https://api.spoonacular.com/recipes/random?apiKey=09254edec163409db736fb4fa15b6b1f&number=10"
 
     fetch(url)
     .then((res) => {
@@ -119,7 +119,7 @@ export default function TabOneScreen() {
       <EditScreenInfo path="app/(tabs)/index.tsx" />
       */}
       <FlatList
-       data={meals.results}
+       data={meals.recipes}
        renderItem={({item}) => <Item item={item} />}
        keyExtractor={item => item.id}
       />
