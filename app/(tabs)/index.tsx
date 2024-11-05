@@ -68,15 +68,19 @@ export default function TabOneScreen() {
 
   const Item = ({item}) => {
     let imgSource;
-    (item.strMealThumb == null) ? 
-      imgSource=PlaceholderImage : imgSource=item.strMealThumb;
+    (item.image == null) ? 
+      imgSource=PlaceholderImage : imgSource=item.image;
 
     return( 
       <TouchableOpacity style={styles.listItem} onPress={() => setSelectedId(item.id)}>
-        <Image style={styles.imagePreview}
-          source={imgSource}
-        />
-        <Text>{item.strMeal}</Text>
+        <View style={styles.itemContainer}>
+          <Image style={styles.imagePreview}
+            source={imgSource}
+          />
+          <Text style={styles.itemText}>
+            {item.title}
+          </Text>
+        </View>
       </TouchableOpacity >
     );
   }
@@ -86,28 +90,21 @@ export default function TabOneScreen() {
   //https://api.spoonacular.com/recipes/complexSearch?apiKey=09254edec163409db736fb4fa15b6b1f&query=pasta&maxFat=25&number=2
 
   const getAPIdata = () => {
-    //const url = "https://fakestoreapi.com/products"; 
-    const url = "https://www.themealdb.com/api/json/v1/1/random.php";
-    //const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata";
-    
-    let mealList = [];
+    ////const url = "https://fakestoreapi.com/products"; 
+    ////const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata";
+    //  const url = "https://www.themealdb.com/api/json/v1/1/random.php";
 
-    for (let i = 0; i < 10; i++) {
-      fetch(url)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        mealList.push(data.meals[0]);
-        //console.warn(data.meals[0]);
-        if (i == 9){
-          setMeals(mealList);
-          //console.warn(mealList);
-        }
-        //console.warn(data); 
+    const url = "https://api.spoonacular.com/recipes/complexSearch?apiKey=09254edec163409db736fb4fa15b6b1f&maxFat=25&number=10"
 
-      });
-    }
+
+    fetch(url)
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      setMeals(data);
+      //console.warn(data); 
+    });
   }
 
   useEffect(()=>{
@@ -122,9 +119,9 @@ export default function TabOneScreen() {
       <EditScreenInfo path="app/(tabs)/index.tsx" />
       */}
       <FlatList
-       data={meals}
+       data={meals.results}
        renderItem={({item}) => <Item item={item} />}
-       keyExtractor={item => item.idMeal}
+       keyExtractor={item => item.id}
       />
     </View>
   );
@@ -134,6 +131,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+  },
+  itemContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: 'lightgrey',
   },
   title: {
     fontSize: 20,
@@ -147,11 +149,11 @@ const styles = StyleSheet.create({
   listItem: {
     width: '96%',
     fontSize: 10,
-    paddingHorizontal: 30,
+    backgroundColor: 'lightgrey',
+    paddingHorizontal: 10,
     paddingVertical: 10,
     marginBottom: 8,
     marginLeft:8,
-    backgroundColor: 'lightgrey',
     fontWeight: 'bold',
     borderWidth: 2,
     borderColor: 'black',
@@ -164,4 +166,9 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
   },
+  itemText:{
+    textAlign: 'left',
+    marginLeft: 10,
+    marginRight: 100,
+  }
 });
