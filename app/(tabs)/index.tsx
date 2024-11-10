@@ -6,59 +6,8 @@ const PlaceholderImage = require('@/assets/images/no-image.png');
 
 import EditScreenInfo from '@/components/EditScreenInfo';
 import MealInfo from '@/components/MealInfo';
+import SearchMeal from '@/components/searchMeal';
 import { Text, View } from '@/components/Themed';
-
-const DATA = [
-  {
-    id:"1",
-    title:"Data Structures"
-  },
-  {
-    id:"2",
-    title:"STL"
-  },
-  {
-    id:"3",
-    title:"C++"
-  },
-  {
-    id:"4",
-    title:"Java"
-  },
-  {
-    id:"5",
-    title:"Python"
-  },
-  {
-    id:"6",
-    title:"CP"
-  },
-  {
-    id:"7",
-    title:"ReactJs"
-  },
-  {
-    id:"8",
-    title:"NodeJs"
-  },
-  {
-    id:"9",
-    title:"MongoDb"
-  },
-  {
-    id:"10",
-    title:"ExpressJs"
-  },
-  {
-    id:"11",
-    title:"PHP"
-  },
-  {
-    id:"12",
-    title:"MySql"
-  },
-];
-
 
 
 export default function TabOneScreen() {
@@ -113,15 +62,17 @@ export default function TabOneScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      {/*  ToDo: Remove
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
-      */}
-      <FlatList
-       data={meals.recipes}
-       renderItem={({item}) => <Item item={item} />}
-       keyExtractor={item => item.id}
+      {/*<Text style={styles.title}>Tab One</Text>*/}
+      
+      { /* <View style={{flex: 1, backgroundColor: 'red'}} />  */}
+
+      <View style={styles.search}>
+        <SearchMeal onSelect={() => console.log("onSelect")} onClose={() => console.log("onClose")}/>
+        </View>
+      <FlatList style={styles.list}
+        data={meals.recipes}
+        renderItem={({item}) => <Item item={item} />}
+        keyExtractor={item => item.id}
       />
     </View>
   );
@@ -130,7 +81,7 @@ export default function TabOneScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    flexDirection: 'column',
   },
   itemContainer: {
     flex: 1,
@@ -141,10 +92,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  search:{
+  },
+  list: {
+   flex: 1,
   },
   listItem: {
     width: '96%',
@@ -159,7 +110,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderRadius: 5,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
   imagePreview: {
