@@ -14,6 +14,7 @@ export default function TabOneScreen() {
 
   const [selectedId, setSelectedId] = useState<string>();
   const [meals, setMeals] = useState([]);
+  const [searchText, onChangeText] = useState('Search meal...');
 
   const Item = ({item}) => {
     let imgSource;
@@ -34,6 +35,14 @@ export default function TabOneScreen() {
     );
   }
 
+  const buttonClickListener = () => {
+    console.warn("Clicked On Button !!!");
+    console.warn(searchText);
+
+    setMeals([]);
+    getAPIdata();
+  };
+
   //https://spoonacular.com/food-api/
   //API Key:09254edec163409db736fb4fa15b6b1f
   //https://api.spoonacular.com/recipes/complexSearch?apiKey=09254edec163409db736fb4fa15b6b1f&query=pasta&maxFat=25&number=2
@@ -52,7 +61,7 @@ export default function TabOneScreen() {
     })
     .then((data) => {
       setMeals(data);
-      //console.warn(data); 
+      //console.warn(searchText);
     });
   }
 
@@ -61,13 +70,14 @@ export default function TabOneScreen() {
   },[])
 
   return (
-    <View style={styles.container}>
-      {/*<Text style={styles.title}>Tab One</Text>*/}
-      
+    <View style={styles.container}>      
       { /* <View style={{flex: 1, backgroundColor: 'red'}} />  */}
 
       <View style={styles.search}>
-        <SearchMeal onSelect={() => console.log("onSelect")} onClose={() => console.log("onClose")}/>
+        <SearchMeal onSelect={() => console.log("onSelect")} 
+                    onClose={() => console.log("onClose")} 
+                    onChange={onChangeText} 
+                    onSearch={buttonClickListener}/>
         </View>
       <FlatList style={styles.list}
         data={meals.recipes}
@@ -86,7 +96,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: 'lightgrey',
+    backgroundColor: 'powderblue',
   },
   title: {
     fontSize: 20,
@@ -100,7 +110,7 @@ const styles = StyleSheet.create({
   listItem: {
     width: '96%',
     fontSize: 10,
-    backgroundColor: 'lightgrey',
+    backgroundColor: 'powderblue',
     paddingHorizontal: 10,
     paddingVertical: 10,
     marginBottom: 8,

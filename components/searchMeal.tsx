@@ -1,25 +1,29 @@
 import { useState } from 'react';
-import { StyleSheet, TextInput, Pressable, View } from 'react-native';
+import { StyleSheet, TextInput, Button, Pressable, View } from 'react-native';
 import { Image, type ImageSource } from 'expo-image';
 
 type Props = {
   onSelect: (image: ImageSource) => void;
   onClose: () => void;
+  onSearch: () => void;
 };
 
-export default function SearchMeal({ onSelect, onClose }: Props) {
+export default function SearchMeal({ onSelect, onClose, onChange, onSearch }: Props) {
 
-  const [text, onChangeText] = useState('Search meal...');
+  //const [text, onChangeText] = useState('Search meal...');
 
   return (
     <View style={styles.searchContainer}>
       <TextInput  style={styles.textInput}
-        onChangeText={onChangeText} 
-        value={text}
+        onChangeText={text => onChange(text)}
+        placeholder="search meal"
+        //value={text}
       />
-      <Image style={styles.searchButton}
+      <Button title = "SEARCH" onPress={onSearch}/>
+  
+      {/*<Image style={styles.searchButton}
             source={require("../assets/images/search.png")}
-      />
+      />*/}
     </View>
     );
 }
