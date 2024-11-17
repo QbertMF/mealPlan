@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import { StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, TouchableOpacity, FlatList, Keyboard } from 'react-native';
 import { Image } from 'expo-image';
 
 const PlaceholderImage = require('@/assets/images/no-image.png');
@@ -35,10 +35,11 @@ export default function TabOneScreen() {
     );
   }
 
-  const buttonClickListener = () => {
+  const buttonClickSearch = () => {
     console.warn("Clicked On Button !!!");
     console.warn(searchText);
 
+    Keyboard.dismiss();
     setMeals([]);
     getAPIdata();
   };
@@ -77,7 +78,7 @@ export default function TabOneScreen() {
         <SearchMeal onSelect={() => console.log("onSelect")} 
                     onClose={() => console.log("onClose")} 
                     onChange={onChangeText} 
-                    onSearch={buttonClickListener}/>
+                    onSearch={buttonClickSearch}/>
         </View>
       <FlatList style={styles.list}
         data={meals.recipes}

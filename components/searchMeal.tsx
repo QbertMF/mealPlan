@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, TextInput, Button, Pressable, View } from 'react-native';
 import { Image, type ImageSource } from 'expo-image';
+import ImageButton from '@/components/ImageButton';
 
 type Props = {
   onSelect: (image: ImageSource) => void;
@@ -19,7 +20,8 @@ export default function SearchMeal({ onSelect, onClose, onChange, onSearch }: Pr
         placeholder="search meal"
         //value={text}
       />
-      <Button title = "SEARCH" onPress={onSearch}/>
+      <ImageButton title={""} onPress={onSearch} imageSrc={require('../assets/images/search.png')}/>
+      {/*<Button title = "SEARCH" onPress={onSearch}/>*/}
   
       {/*<Image style={styles.searchButton}
             source={require("../assets/images/search.png")}
@@ -32,7 +34,6 @@ const styles = StyleSheet.create({
   searchContainer: {
     width: '96%',
     fontSize: 10,
-    backgroundColor: 'lightgreen',
     paddingHorizontal: 10,
     paddingVertical: 10,
     marginBottom: 8,
@@ -45,9 +46,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   textInput: {
-    width: '90%',
+    width: '88%',
     height: 40,
-    backgroundColor: 'lightblue',
     alignSelf: 'flex-start',
   },
   searchButton: {
