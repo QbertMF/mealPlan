@@ -16,16 +16,11 @@ export default function SearchMeal({ onSelect, onClose, onChange, onSearch }: Pr
   return (
     <View style={styles.searchContainer}>
       <TextInput  style={styles.textInput}
-        onChangeText={text => onChange(text)}
+        //onChangeText={text => onChange(text)}
         placeholder="search meal"
         //value={text}
       />
-      <ImageButton title={""} onPress={onSearch} imageSrc={require('../assets/images/search.png')}/>
-      {/*<Button title = "SEARCH" onPress={onSearch}/>*/}
-  
-      {/*<Image style={styles.searchButton}
-            source={require("../assets/images/search.png")}
-      />*/}
+      <ImageButton title={""} onPress={onSearch} imageSrc={require('../assets/images/search.png')}/>   
     </View>
     );
 }

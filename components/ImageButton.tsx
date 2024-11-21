@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     height: 38,
     margin: 2,
     borderRadius: 10,
-    borderWidth: 1,
+    borderWidth: 0,
   },
   absoluteView:{
     flex: 1,

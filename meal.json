@@ -1,0 +1,616 @@
+{
+	"vegetarian": false,
+	"vegan": false,
+	"glutenFree": false,
+	"dairyFree": true,
+	"veryHealthy": false,
+	"cheap": false,
+	"veryPopular": false,
+	"sustainable": false,
+	"lowFodmap": false,
+	"weightWatcherSmartPoints": 8,
+	"gaps": "no",
+	"preparationMinutes": null,
+	"cookingMinutes": null,
+	"aggregateLikes": 2,
+	"healthScore": 27,
+	"creditsText": "foodista.com",
+	"sourceName": "foodista.com",
+	"pricePerServing": 254.03,
+	"extendedIngredients": [
+		{
+			"id": 11020420,
+			"aisle": "Pasta and Rice",
+			"image": "shell-pasta.jpg",
+			"consistency": "SOLID",
+			"name": "shrimp",
+			"nameClean": "pasta shells",
+			"original": "8 medium shrimp, deveined, shells removed",
+			"originalName": "shrimp, deveined, shells removed",
+			"amount": 8,
+			"unit": "medium",
+			"meta": [
+				"deveined"
+			],
+			"measures": {
+				"us": {
+					"amount": 8,
+					"unitShort": "medium",
+					"unitLong": "mediums"
+				},
+				"metric": {
+					"amount": 8,
+					"unitShort": "medium",
+					"unitLong": "mediums"
+				}
+			}
+		},
+		{
+			"id": 11043,
+			"aisle": "Ethnic Foods",
+			"image": "bean-sprouts.jpg",
+			"consistency": "SOLID",
+			"name": "bean sprouts",
+			"nameClean": "bean sprouts",
+			"original": "handful of bean sprouts",
+			"originalName": "bean sprouts",
+			"amount": 1,
+			"unit": "handful",
+			"meta": [],
+			"measures": {
+				"us": {
+					"amount": 1,
+					"unitShort": "handful",
+					"unitLong": "handful"
+				},
+				"metric": {
+					"amount": 1,
+					"unitShort": "handful",
+					"unitLong": "handful"
+				}
+			}
+		},
+		{
+			"id": 10211215,
+			"aisle": "Produce",
+			"image": "garlic.jpg",
+			"consistency": "SOLID",
+			"name": "garlic cloves",
+			"nameClean": "whole garlic cloves",
+			"original": "2 garlic cloves, chopped",
+			"originalName": "garlic cloves, chopped",
+			"amount": 2,
+			"unit": "",
+			"meta": [
+				"chopped"
+			],
+			"measures": {
+				"us": {
+					"amount": 2,
+					"unitShort": "",
+					"unitLong": ""
+				},
+				"metric": {
+					"amount": 2,
+					"unitShort": "",
+					"unitLong": ""
+				}
+			}
+		},
+		{
+			"id": 11291,
+			"aisle": "Produce",
+			"image": "spring-onions.jpg",
+			"consistency": "SOLID",
+			"name": "spring onions",
+			"nameClean": "spring onions",
+			"original": "2 stalks of spring onions (chopped to 2- inches lengths)",
+			"originalName": "spring onions (chopped to 2- inches lengths)",
+			"amount": 2,
+			"unit": "stalks",
+			"meta": [
+				"chopped",
+				"( to 2- inches lengths)"
+			],
+			"measures": {
+				"us": {
+					"amount": 2,
+					"unitShort": "stalks",
+					"unitLong": "stalks"
+				},
+				"metric": {
+					"amount": 2,
+					"unitShort": "stalks",
+					"unitLong": "stalks"
+				}
+			}
+		},
+		{
+			"id": 5062,
+			"aisle": "Meat",
+			"image": "chicken-breasts.png",
+			"consistency": "SOLID",
+			"name": "chicken breast meat",
+			"nameClean": "chicken breast",
+			"original": "Chicken boneless breast meat, chopped to bite-size",
+			"originalName": "Chicken boneless breast meat, chopped to bite-size",
+			"amount": 3,
+			"unit": "servings",
+			"meta": [
+				"boneless",
+				"chopped"
+			],
+			"measures": {
+				"us": {
+					"amount": 3,
+					"unitShort": "servings",
+					"unitLong": "servings"
+				},
+				"metric": {
+					"amount": 3,
+					"unitShort": "servings",
+					"unitLong": "servings"
+				}
+			}
+		},
+		{
+			"id": 11124,
+			"aisle": "Produce",
+			"image": "sliced-carrot.png",
+			"consistency": "SOLID",
+			"name": "carrot",
+			"nameClean": "carrot",
+			"original": "1 small/ medium carrot, chopped into matchsticks",
+			"originalName": "medium carrot, chopped into matchsticks",
+			"amount": 1,
+			"unit": "small",
+			"meta": [
+				"chopped"
+			],
+			"measures": {
+				"us": {
+					"amount": 1,
+					"unitShort": "small",
+					"unitLong": "small"
+				},
+				"metric": {
+					"amount": 1,
+					"unitShort": "small",
+					"unitLong": "small"
+				}
+			}
+		},
+		{
+			"id": 4053,
+			"aisle": "Oil, Vinegar, Salad Dressing",
+			"image": "olive-oil.jpg",
+			"consistency": "LIQUID",
+			"name": "corn/ olive oil",
+			"nameClean": "olive oil",
+			"original": "Corn/ olive oil",
+			"originalName": "Corn/ olive oil",
+			"amount": 3,
+			"unit": "servings",
+			"meta": [],
+			"measures": {
+				"us": {
+					"amount": 3,
+					"unitShort": "servings",
+					"unitLong": "servings"
+				},
+				"metric": {
+					"amount": 3,
+					"unitShort": "servings",
+					"unitLong": "servings"
+				}
+			}
+		},
+		{
+			"id": 2032,
+			"aisle": "Spices and Seasonings",
+			"image": "white-pepper.png",
+			"consistency": "SOLID",
+			"name": "flavoured pepper",
+			"nameClean": "white pepper",
+			"original": "Dashes of flavoured white pepper",
+			"originalName": "flavoured white pepper",
+			"amount": 1,
+			"unit": "Dashes",
+			"meta": [
+				"white"
+			],
+			"measures": {
+				"us": {
+					"amount": 1,
+					"unitShort": "Dashes",
+					"unitLong": "Dashe"
+				},
+				"metric": {
+					"amount": 1,
+					"unitShort": "Dashes",
+					"unitLong": "Dashe"
+				}
+			}
+		},
+		{
+			"id": 16124,
+			"aisle": "Condiments",
+			"image": "soy-sauce.jpg",
+			"consistency": "LIQUID",
+			"name": "soy sauce",
+			"nameClean": "soy sauce",
+			"original": "4 tablespoons Soy Sauce",
+			"originalName": "Soy Sauce",
+			"amount": 4,
+			"unit": "tablespoons",
+			"meta": [],
+			"measures": {
+				"us": {
+					"amount": 4,
+					"unitShort": "Tbsps",
+					"unitLong": "Tbsps"
+				},
+				"metric": {
+					"amount": 4,
+					"unitShort": "Tbsps",
+					"unitLong": "Tbsps"
+				}
+			}
+		},
+		{
+			"id": 5006,
+			"aisle": "Meat",
+			"image": "whole-chicken.jpg",
+			"consistency": "SOLID",
+			"name": "cornstarch to marinate chicken",
+			"nameClean": "whole chicken",
+			"original": "1 tablespoon cornstarch to marinate chicken",
+			"originalName": "cornstarch to marinate chicken",
+			"amount": 1,
+			"unit": "tablespoon",
+			"meta": [],
+			"measures": {
+				"us": {
+					"amount": 1,
+					"unitShort": "Tbsp",
+					"unitLong": "Tbsp"
+				},
+				"metric": {
+					"amount": 1,
+					"unitShort": "Tbsp",
+					"unitLong": "Tbsp"
+				}
+			}
+		},
+		{
+			"id": 19335,
+			"aisle": "Baking",
+			"image": "sugar-in-bowl.png",
+			"consistency": "SOLID",
+			"name": "tablepsoon sugar",
+			"nameClean": "sugar",
+			"original": "1 tablepsoon sugar",
+			"originalName": "tablepsoon sugar",
+			"amount": 1,
+			"unit": "",
+			"meta": [],
+			"measures": {
+				"us": {
+					"amount": 1,
+					"unitShort": "",
+					"unitLong": ""
+				},
+				"metric": {
+					"amount": 1,
+					"unitShort": "",
+					"unitLong": ""
+				}
+			}
+		},
+		{
+			"id": 20133,
+			"aisle": "Pasta and Rice",
+			"image": "rice-noodles.jpg",
+			"consistency": "SOLID",
+			"name": "vermicelli",
+			"nameClean": "rice vermicelli",
+			"original": "1 packet vermicelli (follow packet's cooking instructions)",
+			"originalName": "vermicelli (follow packet's cooking instructions)",
+			"amount": 1,
+			"unit": "packet",
+			"meta": [
+				"(follow packet's cooking instructions)"
+			],
+			"measures": {
+				"us": {
+					"amount": 1,
+					"unitShort": "pkt",
+					"unitLong": "packet"
+				},
+				"metric": {
+					"amount": 1,
+					"unitShort": "pkt",
+					"unitLong": "packet"
+				}
+			}
+		},
+		{
+			"id": 14412,
+			"aisle": "Beverages",
+			"image": "water.png",
+			"consistency": "LIQUID",
+			"name": "water",
+			"nameClean": "water",
+			"original": "1/2 cup water",
+			"originalName": "water",
+			"amount": 0.5,
+			"unit": "cup",
+			"meta": [],
+			"measures": {
+				"us": {
+					"amount": 0.5,
+					"unitShort": "cups",
+					"unitLong": "cups"
+				},
+				"metric": {
+					"amount": 118.294,
+					"unitShort": "ml",
+					"unitLong": "milliliters"
+				}
+			}
+		},
+		{
+			"id": -1,
+			"aisle": "?",
+			"image": null,
+			"consistency": "SOLID",
+			"name": "sambal oelek",
+			"nameClean": null,
+			"original": "1 tablespoon of sambal oelek (I use Thai Choice brand)",
+			"originalName": "sambal oelek (I use Thai Choice brand)",
+			"amount": 1,
+			"unit": "tablespoon",
+			"meta": [
+				"(I use Thai Choice brand)"
+			],
+			"measures": {
+				"us": {
+					"amount": 1,
+					"unitShort": "Tbsp",
+					"unitLong": "Tbsp"
+				},
+				"metric": {
+					"amount": 1,
+					"unitShort": "Tbsp",
+					"unitLong": "Tbsp"
+				}
+			}
+		},
+		{
+			"id": -1,
+			"aisle": "?",
+			"image": null,
+			"consistency": "SOLID",
+			"name": "sambal oelek",
+			"nameClean": null,
+			"original": "1 tablespoon of sambal oelek (I use Thai Choice brand)",
+			"originalName": "sambal oelek (I use Thai Choice brand)",
+			"amount": 1,
+			"unit": "tablespoon",
+			"meta": [
+				"(I use Thai Choice brand)"
+			],
+			"measures": {
+				"us": {
+					"amount": 1,
+					"unitShort": "Tbsp",
+					"unitLong": "Tbsp"
+				},
+				"metric": {
+					"amount": 1,
+					"unitShort": "Tbsp",
+					"unitLong": "Tbsp"
+				}
+			}
+		}
+	],
+	"id": 643669,
+	"title": "Fried Bee Hoon/ Vermicelli",
+	"readyInMinutes": 45,
+	"servings": 3,
+	"sourceUrl": "https://www.foodista.com/recipe/34MHGGXL/fried-bee-hoon-vermicelli",
+	"image": "https://img.spoonacular.com/recipes/643669-556x370.jpg",
+	"imageType": "jpg",
+	"summary": "If you have approximately <b>45 minutes</b> to spend in the kitchen, Fried Bee Hoon/ Vermicelli might be an awesome <b>dairy free</b> recipe to try. This recipe serves 3 and costs $2.54 per serving. One serving contains <b>432 calories</b>, <b>52g of protein</b>, and <b>21g of fat</b>. 2 people were impressed by this recipe. It works well as a main course. It is brought to you by Foodista. If you have flavoured pepper, soy sauce, sambal oelek, and a few other ingredients on hand, you can make it. Overall, this recipe earns a <b>solid spoonacular score of 45%</b>. If you like this recipe, take a look at these similar recipes: <a href=\"https://spoonacular.com/recipes/fried-bee-hoon-vermicelli-1371715\">Fried Bee Hoon/ Vermicelli</a>, <a href=\"https://spoonacular.com/recipes/fried-bee-hoon-rice-vermicelli-with-canned-stewed-pork-565276\">Fried Bee Hoon (Rice Vermicelli) with Canned Stewed Pork</a>, and <a href=\"https://spoonacular.com/recipes/vegetarian-fried-vermicelli-fried-bee-hoon-113883\">Vegetarian Fried Vermicelli (Fried Bee Hoon)</a>.",
+	"cuisines": [],
+	"dishTypes": [
+		"lunch",
+		"main course",
+		"main dish",
+		"dinner"
+	],
+	"diets": [
+		"dairy free"
+	],
+	"occasions": [],
+	"instructions": "Mix sugar, white pepper, soy sauce, water in the bowl and set aside. In another bowl, marinate the chicken with cornstarch. Heat up a wok and add in the cooking oil. Add in the chopped garlic and stir-fry until aromatic or turn light brown.\nStir in the chicken meat and fry until the chicken is cooked through. Add in shrimps and continue stir-frying until cooked.\nAdd in the vermicelli and then follow by seasonings. Toss the rice sticks continuously until fully coated.\nContinue to stir fry for 3 minutes or until noodles turn soft, then throw in bean sprouts and spring onions. Stir-fry until the bean sprouts are cooked.\nServe immediately.",
+	"analyzedInstructions": [
+		{
+			"name": "",
+			"steps": [
+				{
+					"number": 1,
+					"step": "Mix sugar, white pepper, soy sauce, water in the bowl and set aside. In another bowl, marinate the chicken with cornstarch.",
+					"ingredients": [
+						{
+							"id": 2032,
+							"name": "white pepper",
+							"localizedName": "white pepper",
+							"image": "white-pepper.png"
+						},
+						{
+							"id": 20027,
+							"name": "corn starch",
+							"localizedName": "corn starch",
+							"image": "white-powder.jpg"
+						},
+						{
+							"id": 16124,
+							"name": "soy sauce",
+							"localizedName": "soy sauce",
+							"image": "soy-sauce.jpg"
+						},
+						{
+							"id": 0,
+							"name": "chicken",
+							"localizedName": "chicken",
+							"image": "whole-chicken.jpg"
+						},
+						{
+							"id": 19335,
+							"name": "sugar",
+							"localizedName": "sugar",
+							"image": "sugar-in-bowl.png"
+						},
+						{
+							"id": 14412,
+							"name": "water",
+							"localizedName": "water",
+							"image": "water.png"
+						}
+					],
+					"equipment": [
+						{
+							"id": 404783,
+							"name": "bowl",
+							"localizedName": "bowl",
+							"image": "https://spoonacular.com/cdn/equipment_100x100/bowl.jpg"
+						}
+					]
+				},
+				{
+					"number": 2,
+					"step": "Heat up a wok and add in the cooking oil.",
+					"ingredients": [
+						{
+							"id": 4582,
+							"name": "cooking oil",
+							"localizedName": "cooking oil",
+							"image": "vegetable-oil.jpg"
+						}
+					],
+					"equipment": [
+						{
+							"id": 404666,
+							"name": "wok",
+							"localizedName": "wok",
+							"image": "https://spoonacular.com/cdn/equipment_100x100/wok.png"
+						}
+					]
+				},
+				{
+					"number": 3,
+					"step": "Add in the chopped garlic and stir-fry until aromatic or turn light brown.",
+					"ingredients": [
+						{
+							"id": 11215,
+							"name": "garlic",
+							"localizedName": "garlic",
+							"image": "garlic.png"
+						}
+					],
+					"equipment": []
+				},
+				{
+					"number": 4,
+					"step": "Stir in the chicken meat and fry until the chicken is cooked through.",
+					"ingredients": [
+						{
+							"id": 0,
+							"name": "chicken meat",
+							"localizedName": "chicken meat",
+							"image": "chicken-breasts.png"
+						},
+						{
+							"id": 0,
+							"name": "chicken",
+							"localizedName": "chicken",
+							"image": "whole-chicken.jpg"
+						}
+					],
+					"equipment": []
+				},
+				{
+					"number": 5,
+					"step": "Add in shrimps and continue stir-frying until cooked.",
+					"ingredients": [
+						{
+							"id": 15270,
+							"name": "shrimp",
+							"localizedName": "shrimp",
+							"image": "https://spoonacular.com/cdn/ingredients_100x100/shrimp.png"
+						}
+					],
+					"equipment": []
+				},
+				{
+					"number": 6,
+					"step": "Add in the vermicelli and then follow by seasonings. Toss the rice sticks continuously until fully coated.",
+					"ingredients": [
+						{
+							"id": 1042027,
+							"name": "seasoning",
+							"localizedName": "seasoning",
+							"image": "seasoning.png"
+						},
+						{
+							"id": 20444,
+							"name": "rice",
+							"localizedName": "rice",
+							"image": "uncooked-white-rice.png"
+						}
+					],
+					"equipment": []
+				},
+				{
+					"number": 7,
+					"step": "Continue to stir fry for 3 minutes or until noodles turn soft, then throw in bean sprouts and spring onions. Stir-fry until the bean sprouts are cooked.",
+					"ingredients": [
+						{
+							"id": 11291,
+							"name": "spring onions",
+							"localizedName": "spring onions",
+							"image": "spring-onions.jpg"
+						},
+						{
+							"id": 11043,
+							"name": "bean sprouts",
+							"localizedName": "bean sprouts",
+							"image": "bean-sprouts.jpg"
+						},
+						{
+							"id": 20420,
+							"name": "pasta",
+							"localizedName": "pasta",
+							"image": "https://spoonacular.com/cdn/ingredients_100x100/fusilli.jpg"
+						}
+					],
+					"equipment": [],
+					"length": {
+						"number": 3,
+						"unit": "minutes"
+					}
+				},
+				{
+					"number": 8,
+					"step": "Serve immediately.",
+					"ingredients": [],
+					"equipment": []
+				}
+			]
+		}
+	],
+	"originalId": null,
+	"spoonacularScore": 70.46391296386719,
+	"spoonacularSourceUrl": "https://spoonacular.com/fried-bee-hoon-vermicelli-643669"
+}

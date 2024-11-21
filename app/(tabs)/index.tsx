@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import { StyleSheet, TouchableOpacity, FlatList, Keyboard } from 'react-native';
+import { StyleSheet, Button, TouchableOpacity, FlatList, Keyboard, Modal } from 'react-native';
 import { Image } from 'expo-image';
 
 const PlaceholderImage = require('@/assets/images/no-image.png');
@@ -7,14 +7,34 @@ const PlaceholderImage = require('@/assets/images/no-image.png');
 import EditScreenInfo from '@/components/EditScreenInfo';
 import MealInfo from '@/components/MealInfo';
 import SearchMeal from '@/components/searchMeal';
+import MealModal from '@/components/MealModal';
 import { Text, View } from '@/components/Themed';
 
+import { Convert, MealType } from "@/components/mealType";
 
 export default function TabOneScreen() {
 
   const [selectedId, setSelectedId] = useState<string>();
   const [meals, setMeals] = useState([]);
   const [searchText, onChangeText] = useState('Search meal...');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedMeal, setSelectedMeal] = useState(null);
+
+  const onSelectMeal = (index: string) => {
+    setSelectedId(index);
+    for (var myMeal in meals.recipes) {
+      //var jsMeal = Convert.mealTypeToJson(myMeal);
+      //const jsmeal = Convert.toMealType(myMeal);
+      //console.log("meal.id:" , myMeal, " -> index: ", index);
+      //console.log(meals.recipes[myMeal]);
+      if (meals.recipes[myMeal].id === index) {
+        console.log("found");
+        setSelectedMeal(meals.recipes[myMeal]);
+        setModalVisible(true);
+      }
+    }
+    //console.log("selected: " , meals);
+  };
 
   const Item = ({item}) => {
     let imgSource;
@@ -22,7 +42,7 @@ export default function TabOneScreen() {
       imgSource=PlaceholderImage : imgSource=item.image;
 
     return( 
-      <TouchableOpacity style={styles.listItem} onPress={() => setSelectedId(item.id)}>
+      <TouchableOpacity style={styles.listItem} onPress={() => onSelectMeal(item.id)}>
         <View style={styles.itemContainer}>
           <Image style={styles.imagePreview}
             source={imgSource}
@@ -63,6 +83,7 @@ export default function TabOneScreen() {
     .then((data) => {
       setMeals(data);
       //console.warn(searchText);
+      //console.log("after load: " , meals);
     });
   }
 
@@ -70,10 +91,17 @@ export default function TabOneScreen() {
     getAPIdata()
   },[])
 
-  return (
-    <View style={styles.container}>      
-      { /* <View style={{flex: 1, backgroundColor: 'red'}} />  */}
+  const openModal = () => { 
+    setModalVisible(true); 
+  }; 
+  const closeModal = () => { 
+    setModalVisible(false);
+  };
 
+  return (
+    <View style={styles.container}>
+      <MealModal modalVisible={modalVisible} onClose={closeModal} selectedMeal={selectedMeal} />
+      { /* <View style={{flex: 1, backgroundColor: 'red'}} />  */}
       <View style={styles.search}>
         <SearchMeal onSelect={() => console.log("onSelect")} 
                     onClose={() => console.log("onClose")} 
@@ -132,5 +160,5 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     marginLeft: 10,
     marginRight: 100,
-  }
+  },
 });
