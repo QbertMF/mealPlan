@@ -27,7 +27,7 @@ export default function TabOneScreen() {
     for (var myMeal in meals.recipes) {
       if (meals.recipes[myMeal].id === index) {
         let currIndex = Number(index);
-        console.log(currIndex);
+        //console.log(currIndex);
         let isFavorite = favoritMeals.some(e => e === currIndex);
         setIsFavorite(isFavorite);
         setSelectedMeal(meals.recipes[myMeal]);
@@ -49,17 +49,12 @@ export default function TabOneScreen() {
 
     setIsFavorite(!isFavorite);
 
-    console.log("index: ", currId);
-    console.log("fav list: ", favoritMeals);
-
     if (!currFav){
       // remove favorite
-      console.log("delete");
       const newFavorites = favoritMeals.filter(e => e !== currId);
       setFavoriteMeals(newFavorites);
     } else {
       // add favorite
-        console.log("new");
         const newFavorites = favoritMeals;
         if (!newFavorites.includes(currId)) {
           newFavorites.push(currId);

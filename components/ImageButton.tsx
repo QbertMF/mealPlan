@@ -26,10 +26,10 @@ const styles = StyleSheet.create({
     marginRight: 4,
   },
   image: {
-    width: 38,
-    height: 38,
-    margin: 2,
-    borderRadius: 10,
+    width: 32,
+    height: 32,
+    margin: 4,
+    borderRadius: 6,
     borderWidth: 0,
   },
   absoluteView:{
