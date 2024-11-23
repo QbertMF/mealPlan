@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import { StyleSheet, Button, TouchableOpacity, FlatList, Keyboard, Modal } from 'react-native';
+import { StyleSheet, TouchableOpacity, FlatList, Keyboard, Modal } from 'react-native';
 import { Image } from 'expo-image';
 
 const PlaceholderImage = require('@/assets/images/no-image.png');
@@ -18,22 +18,54 @@ export default function TabOneScreen() {
   const [meals, setMeals] = useState([]);
   const [searchText, onChangeText] = useState('Search meal...');
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedMeal, setSelectedMeal] = useState(null);
+  const [selectedMeal, setSelectedMeal] = useState(null);           // currently selected meal from list of meals
+  const [favoritMeals, setFavoriteMeals] = useState<Number[]>([]);  // List of favorite meal IDs
+  const [isFavorite, setIsFavorite] = useState(false);              // is current selectio a favorite?
 
   const onSelectMeal = (index: string) => {
     setSelectedId(index);
     for (var myMeal in meals.recipes) {
-      //var jsMeal = Convert.mealTypeToJson(myMeal);
-      //const jsmeal = Convert.toMealType(myMeal);
-      //console.log("meal.id:" , myMeal, " -> index: ", index);
-      //console.log(meals.recipes[myMeal]);
       if (meals.recipes[myMeal].id === index) {
-        console.log("found");
+        let currIndex = Number(index);
+        console.log(currIndex);
+        let isFavorite = favoritMeals.some(e => e === currIndex);
+        setIsFavorite(isFavorite);
         setSelectedMeal(meals.recipes[myMeal]);
         setModalVisible(true);
       }
     }
     //console.log("selected: " , meals);
+  };
+
+  /* 
+  * Modal will call this callback when a´favorite icon is pressed
+  * toggle favorite state
+  * update favorite list
+   */
+  const onToggleFavorite = () => {
+    // get current state of selected meal and its favorite status
+    let currFav = !isFavorite;
+    let currId = Number(selectedMeal.id);
+
+    setIsFavorite(!isFavorite);
+
+    console.log("index: ", currId);
+    console.log("fav list: ", favoritMeals);
+
+    if (!currFav){
+      // remove favorite
+      console.log("delete");
+      const newFavorites = favoritMeals.filter(e => e !== currId);
+      setFavoriteMeals(newFavorites);
+    } else {
+      // add favorite
+        console.log("new");
+        const newFavorites = favoritMeals;
+        if (!newFavorites.includes(currId)) {
+          newFavorites.push(currId);
+          setFavoriteMeals(newFavorites);
+      }
+    }
   };
 
   const Item = ({item}) => {
@@ -69,10 +101,6 @@ export default function TabOneScreen() {
   //https://api.spoonacular.com/recipes/complexSearch?apiKey=09254edec163409db736fb4fa15b6b1f&query=pasta&maxFat=25&number=2
 
   const getAPIdata = () => {
-    ////const url = "https://fakestoreapi.com/products"; 
-    ////const url = "https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata";
-    //  const url = "https://www.themealdb.com/api/json/v1/1/random.php";
-
     //const url = "https://api.spoonacular.com/recipes/complexSearch?apiKey=09254edec163409db736fb4fa15b6b1f&maxFat=25&number=10"
     const url = "https://api.spoonacular.com/recipes/random?apiKey=09254edec163409db736fb4fa15b6b1f&number=10"
 
@@ -100,7 +128,7 @@ export default function TabOneScreen() {
 
   return (
     <View style={styles.container}>
-      <MealModal modalVisible={modalVisible} onClose={closeModal} selectedMeal={selectedMeal} />
+      <MealModal modalVisible={modalVisible} onClose={closeModal} onToggleFav={onToggleFavorite} selectedMeal={selectedMeal} isFavorite={isFavorite}/>
       { /* <View style={{flex: 1, backgroundColor: 'red'}} />  */}
       <View style={styles.search}>
         <SearchMeal onSelect={() => console.log("onSelect")} 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, Button, Modal, Text, View, ScrollView, ImageBackground } from 'react-native';
+import { StyleSheet, Button, Modal, Text, View, ScrollView, ImageBackground, TouchableOpacity} from 'react-native';
 import { Image, type ImageSource } from 'expo-image';
 import ImageButton from '@/components/ImageButton';
 
@@ -18,11 +18,12 @@ const iconCheap = require('@/assets/images/cheap.png');
 type Props = {
     modalVisible: boolean;
     onClose: () => void;
+    onToggleFav: () => void;
     selectedMeal: Var;
-
+    isFavorite: boolean;
 };
 
-export default function MealModal({ modalVisible, onClose, selectedMeal }: Props) {
+export default function MealModal({ modalVisible, onClose, onToggleFav, selectedMeal, isFavorite }: Props) {
 
     let imgSource = PlaceholderImage;
     if ((selectedMeal != null) && (selectedMeal.image != null)) {
@@ -38,6 +39,8 @@ export default function MealModal({ modalVisible, onClose, selectedMeal }: Props
     if ((selectedMeal != null) && (selectedMeal.instructions != null)) {
         instructions = selectedMeal.instructions;
     }
+
+    let favIcon = isFavorite ? favorite : favorite_no;
 
     let isPopular = (selectedMeal != null) && (selectedMeal.veryPopular == true);
     let isVegan = (selectedMeal != null) && (selectedMeal.vegan == true);
@@ -61,7 +64,9 @@ export default function MealModal({ modalVisible, onClose, selectedMeal }: Props
             </View>
             
             <ImageBackground style={styles.imagePreview} source={{uri: imgSource}} >
-                <Image style={styles.favoriteIcon} source={favorite} />
+                <TouchableOpacity onPress={onToggleFav}>
+                    <Image style={styles.favoriteIcon} source={favIcon} />
+                </TouchableOpacity>
             </ImageBackground>
             
             <View style={styles.iconContainer}>
