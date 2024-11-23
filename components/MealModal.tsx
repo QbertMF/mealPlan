@@ -60,10 +60,9 @@ export default function MealModal({ modalVisible, onClose, selectedMeal }: Props
                 </View>
             </View>
             
-            <Image style={styles.imagePreview} source={imgSource} >
-                {/*<Image style={styles.imageIcon} source={favorite} />*/}
-                {/*<Image style={styles.favoriteIcon} source={favorite} />*/}
-            </Image>
+            <ImageBackground style={styles.imagePreview} source={{uri: imgSource}} >
+                <Image style={styles.favoriteIcon} source={favorite} />
+            </ImageBackground>
             
             <View style={styles.iconContainer}>
                 {isPopular == true && <Image style={styles.imageIcon} source={iconPopular} />}
@@ -104,6 +103,7 @@ const styles = StyleSheet.create({
         textAlign: 'left', 
     },
     imagePreview: {
+        flex : 1,
         width: '100%',
         height: 400,
         borderRadius: 20,
@@ -113,6 +113,8 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         zIndex: 10,
+        alignSelf: 'flex-end',
+        margin: 15,
     },
     titleContainer: {
         flex: 1,

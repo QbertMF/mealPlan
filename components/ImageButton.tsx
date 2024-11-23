@@ -21,7 +21,7 @@ export default function ImageButton({ onPress, imageSrc, title }: Props) {
 
 const styles = StyleSheet.create({
   touchable: {
-    backgroundColor: 'lightblue',
+    backgroundColor: 'white',
     borderRadius: 20,
     marginRight: 4,
   },
