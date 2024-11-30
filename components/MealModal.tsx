@@ -6,7 +6,7 @@ import ImageButton from '@/components/ImageButton';
 const PlaceholderImage = require('@/assets/images/no-image.png');
 
 const favorite = require('@/assets/images/favorite_yes.png');
-const favorite_no = require('@/assets/images/favorite_no.png');
+const favorite_no = require('@/assets/images/favorite_no2.png');
 
 const iconPopular = require('@/assets/images/popular.png');
 const iconVegan = require('@/assets/images/vegan.png');
@@ -14,6 +14,8 @@ const iconVegetarian = require('@/assets/images/vegetarian.png');
 const iconHealthy = require('@/assets/images/healthy.png');
 const iconGlutenFree = require('@/assets/images/gluten-free.png');
 const iconCheap = require('@/assets/images/cheap.png');
+const iconPreparation = require('@/assets/images/preparation-time.png');
+const iconServings = require('@/assets/images/servings.png');
 
 type Props = {
     modalVisible: boolean;
@@ -38,6 +40,21 @@ export default function MealModal({ modalVisible, onClose, onToggleFav, selected
     let instructions = "nothing";
     if ((selectedMeal != null) && (selectedMeal.instructions != null)) {
         instructions = selectedMeal.instructions;
+    }
+
+    let summary = "nothing";
+    if ((selectedMeal != null) && (selectedMeal.summary != null)) {
+        summary = selectedMeal.summary;
+    }
+
+    let preparationTimeMinutes = null;
+    if ((selectedMeal != null) && (selectedMeal.readyInMinutes != null)) {
+        preparationTimeMinutes = selectedMeal.readyInMinutes;
+    }
+
+    let servings = null;
+    if ((selectedMeal != null) && (selectedMeal.servings != null)) {
+        servings = selectedMeal.servings;
     }
 
     let favIcon = isFavorite ? favorite : favorite_no;
@@ -77,7 +94,24 @@ export default function MealModal({ modalVisible, onClose, onToggleFav, selected
                 {isGlutenFree == true && <Image style={styles.imageIcon} source={iconGlutenFree} />}
                 {isCheap == true && <Image style={styles.imageIcon} source={iconCheap} />}
             </View>
+
+            <View style={styles.statisticsContainer}>
+                {preparationTimeMinutes != null && 
+                    <View style={styles.statisticsContainer}>
+                        <Image style={styles.statisticsIcon} source={iconPreparation} />
+                        <Text style={styles.statisticsText}>{preparationTimeMinutes}</Text>
+                    </View>}
+
+                {servings != null &&
+                    <View style={styles.statisticsContainer}>
+                        <Image style={styles.statisticsIcon} source={iconServings} />
+                        <Text style={styles.statisticsText}>{servings}</Text>
+                    </View>}   
+            </View>
             
+            <Text style={styles.titleText}>Summary:</Text>
+            <Text style={styles.modalText}>{summary}</Text>
+
             <Text style={styles.titleText}>Instructions:</Text>
             <Text style={styles.modalText}>{instructions}</Text>
         </ScrollView>
@@ -110,7 +144,7 @@ const styles = StyleSheet.create({
     imagePreview: {
         flex : 1,
         width: '100%',
-        height: 400,
+        height: 250,
         borderRadius: 20,
         zIndex: 1,
     },
@@ -131,7 +165,6 @@ const styles = StyleSheet.create({
     iconContainer: {
         flex: 1,
         width: '100%',
-        height: 50,
         flexDirection: 'row',
         justifyContent: 'center',
         margin: 5,
@@ -140,5 +173,18 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         margin: 5,
-    } 
+    },
+    statisticsContainer:{
+        flex:1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    statisticsText: {
+        marginLeft: 5,
+        textAlignVertical: 'center',
+    },
+    statisticsIcon: {
+        width: 40,
+        height: 40,
+    },
 });
