@@ -1,40 +1,39 @@
-import {useEffect, useState} from 'react';
-import { StyleSheet, TouchableOpacity, FlatList, Keyboard, Modal } from 'react-native';
+import {useEffect, useState, Dispatch, SetStateAction} from 'react';
+import { StyleSheet, TouchableOpacity, FlatList, Keyboard, Button, Modal } from 'react-native';
 import { Image } from 'expo-image';
 
 const PlaceholderImage = require('@/assets/images/no-image.png');
 
-import EditScreenInfo from '@/components/EditScreenInfo';
-import MealInfo from '@/components/MealInfo';
+//import EditScreenInfo from '@/components/EditScreenInfo';
+//import MealInfo from '@/components/MealInfo';
 import SearchMeal from '@/components/searchMeal';
 import MealModal from '@/components/MealModal';
 import { Text, View } from '@/components/Themed';
 
-import { Convert, MealType } from "@/components/mealType";
+//import { Convert, MealType } from "@/components/mealType";
+
 
 export default function TabOneScreen() {
 
   const [selectedId, setSelectedId] = useState<string>();
-  const [meals, setMeals] = useState([]);
+  const [meals, setMeals] = useState({recipes: []});
   const [searchText, onChangeText] = useState('Search meal...');
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedMeal, setSelectedMeal] = useState(null);           // currently selected meal from list of meals
+  const [selectedMeal, setSelectedMeal] = useState<{ id: string } | null>(null);           // currently selected meal from list of meals
   const [favoritMeals, setFavoriteMeals] = useState<Number[]>([]);  // List of favorite meal IDs
   const [isFavorite, setIsFavorite] = useState(false);              // is current selectio a favorite?
+  const [loading, setLoading] = useState(false);
 
   const onSelectMeal = (index: string) => {
     setSelectedId(index);
-    for (var myMeal in meals.recipes) {
-      if (meals.recipes[myMeal].id === index) {
-        let currIndex = Number(index);
-        //console.log(currIndex);
-        let isFavorite = favoritMeals.some(e => e === currIndex);
-        setIsFavorite(isFavorite);
-        setSelectedMeal(meals.recipes[myMeal]);
-        setModalVisible(true);
-      }
+    const meal = meals.recipes.find((meal) => meal.id === index);
+    if (meal) {
+      const currIndex = Number(index);
+      const isFavorite = favoritMeals.includes(currIndex);
+      setIsFavorite(isFavorite);
+      setSelectedMeal(meal);
+      setModalVisible(true);
     }
-    //console.log("selected: " , meals);
   };
 
   /* 
@@ -45,7 +44,7 @@ export default function TabOneScreen() {
   const onToggleFavorite = () => {
     // get current state of selected meal and its favorite status
     let currFav = !isFavorite;
-    let currId = Number(selectedMeal.id);
+    let currId = selectedMeal ? Number(selectedMeal.id) : 0;
 
     setIsFavorite(!isFavorite);
 
@@ -88,30 +87,41 @@ export default function TabOneScreen() {
 
     Keyboard.dismiss();
     setMeals([]);
-    getAPIdata();
+    fetchRecipes();
   };
 
   //https://spoonacular.com/food-api/
   //API Key:09254edec163409db736fb4fa15b6b1f
   //https://api.spoonacular.com/recipes/complexSearch?apiKey=09254edec163409db736fb4fa15b6b1f&query=pasta&maxFat=25&number=2
-
-  const getAPIdata = () => {
     //const url = "https://api.spoonacular.com/recipes/complexSearch?apiKey=09254edec163409db736fb4fa15b6b1f&maxFat=25&number=10"
-    const url = "https://api.spoonacular.com/recipes/random?apiKey=09254edec163409db736fb4fa15b6b1f&number=10"
+    const API_URL = "https://api.spoonacular.com/recipes/random?apiKey=09254edec163409db736fb4fa15b6b1f&number=10"
 
-    fetch(url)
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      setMeals(data);
-      //console.warn(searchText);
-      //console.log("after load: " , meals);
-    });
-  }
+    const fetchRecipes = async () => {
+      setLoading(true);
+      try {
+          const response = await fetch(API_URL);
+          const data = await response.json();
+          setMeals((prevMeals) => ({
+              recipes: [...prevMeals.recipes, ...data.recipes]
+          }));
+      } catch (error) {
+          console.error(error);
+      } finally {
+          setLoading(false);
+      }
+  };
+
+  const renderFooter = () => {
+    if (loading) return null;
+    return (
+        <View style={styles.footer}>
+            <Button title="Load More Recipes" onPress={fetchRecipes} disabled={loading} />
+        </View>
+    );
+  };
 
   useEffect(()=>{
-    getAPIdata()
+    fetchRecipes()
   },[])
 
   const openModal = () => { 
@@ -135,6 +145,7 @@ export default function TabOneScreen() {
         data={meals.recipes}
         renderItem={({item}) => <Item item={item} />}
         keyExtractor={item => item.id}
+        ListFooterComponent={renderFooter}
       />
     </View>
   );
@@ -184,4 +195,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 100,
   },
+  footer: {
+    padding: 10,
+    alignItems: 'center',
+},
 });
