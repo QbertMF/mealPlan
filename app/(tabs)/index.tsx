@@ -1,5 +1,6 @@
 import {useEffect, useState, Dispatch, SetStateAction} from 'react';
 import { StyleSheet, TouchableOpacity, FlatList, Keyboard, Button, Modal } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image } from 'expo-image';
 
 const PlaceholderImage = require('@/assets/images/no-image.png');
@@ -20,7 +21,7 @@ export default function TabOneScreen() {
   const [searchText, onChangeText] = useState('Search meal...');
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedMeal, setSelectedMeal] = useState<{ id: string } | null>(null);           // currently selected meal from list of meals
-  const [favoritMeals, setFavoriteMeals] = useState<Number[]>([]);  // List of favorite meal IDs
+  const [favoriteMeals, setFavoriteMeals] = useState<Number[]>([]);  // List of favorite meal IDs
   const [isFavorite, setIsFavorite] = useState(false);              // is current selectio a favorite?
   const [loading, setLoading] = useState(false);
 
@@ -29,7 +30,7 @@ export default function TabOneScreen() {
     const meal = meals.recipes.find((meal) => meal.id === index);
     if (meal) {
       const currIndex = Number(index);
-      const isFavorite = favoritMeals.includes(currIndex);
+      const isFavorite = favoriteMeals.includes(currIndex);
       setIsFavorite(isFavorite);
       setSelectedMeal(meal);
       setModalVisible(true);
@@ -50,15 +51,46 @@ export default function TabOneScreen() {
 
     if (!currFav){
       // remove favorite
-      const newFavorites = favoritMeals.filter(e => e !== currId);
+      const newFavorites = favoriteMeals.filter(e => e !== currId);
       setFavoriteMeals(newFavorites);
     } else {
       // add favorite
-        const newFavorites = favoritMeals;
+        const newFavorites = favoriteMeals;
         if (!newFavorites.includes(currId)) {
           newFavorites.push(currId);
           setFavoriteMeals(newFavorites);
+          saveFavorites();
       }
+    }
+  };
+
+  useEffect(() => {
+    loadFavorites();
+  }, []);
+
+  useEffect(() => {
+    saveFavorites();
+  }, [favoriteMeals]);
+
+  const loadFavorites = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('@favorite_meals');
+      if (jsonValue != null) {
+        setFavoriteMeals(JSON.parse(jsonValue));
+        console.log("Loaded Favorites: ", favoriteMeals)
+      }
+    } catch (e) {
+      console.error('Failed to load favorites.', e);
+    }
+  };
+
+  const saveFavorites = async () => {
+    try {
+      const jsonValue = JSON.stringify(favoriteMeals);
+      await AsyncStorage.setItem('@favorite_meals', jsonValue);
+      console.log("Store Favorites: ", favoriteMeals)
+    } catch (e) {
+      console.error('Failed to save favorites.', e);
     }
   };
 

@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "de.qbert_expo.mealplan"
     },
     "web": {
       "bundler": "metro",
@@ -32,6 +33,11 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0dcd1589-b289-43e9-87bd-42934352846f"
+      }
     }
   }
 }
